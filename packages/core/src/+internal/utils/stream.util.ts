@@ -1,4 +1,6 @@
-import * as stream from 'stream';
+import { Stream } from 'stream';
 
-export const isReadableStream = (data: any): data is stream.Readable =>
-  data instanceof stream.Readable;
+export const isStream = (stream: any): stream is Stream =>
+  stream !== null &&
+  typeof stream === 'object' &&
+  typeof stream.pipe === 'function';

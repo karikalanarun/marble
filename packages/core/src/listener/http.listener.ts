@@ -32,7 +32,7 @@ export const httpListener = ({
   output$ = out$ => out$,
 }: HttpListenerConfig) =>
   ask<Context>().map(ctx => {
-    const requestSubject$ = new Subject<{ req: HttpRequest; res: HttpResponse; }>();
+    const requestSubject$ = new Subject<{ req: HttpRequest; res: HttpResponse }>();
     const combinedMiddlewares = combineMiddlewares(...middlewares);
     const routing = factorizeRouting(effects);
     const defaultMetadata = createEffectMetadata({ ask: lookup(ctx) });
@@ -44,7 +44,7 @@ export const httpListener = ({
         takeWhile(() => !res.finished),
         mergeMap(resolveRouting(routing, defaultMetadata)(res)),
         defaultIfEmpty(defaultResponse),
-        mergeMap(out => output$(of(out), res, defaultMetadata)),
+        mergeMap(out => output$(of(out), res, createEffectMetadata({ ...defaultMetadata, initiator: req }))),
         tap(res.send),
         catchError(error =>
           error$(of(req), res, createEffectMetadata({ ...defaultMetadata, error })).pipe(

@@ -5,8 +5,8 @@ import { provideTransportServer } from '../transport/transport.provider';
 import { jsonTransformer } from '../transport/transport.transformer';
 
 export interface MessagingListenerConfig {
-  effects?: any[]; // @TODO
-  middlewares?: any[]; // @TODO
+  // effects?: any[]; // @TODO
+  // middlewares?: any[]; // @TODO
   transport?: Transport;
   messageTransformer?: TransportMessageTransformer<any>;
   options?: any; // @TODO
@@ -14,8 +14,8 @@ export interface MessagingListenerConfig {
 
 export const messagingListener = (config: MessagingListenerConfig = {}) => {
   const {
-    effects = [],
-    middlewares = [],
+    // effects = [],
+    // middlewares = [],
     transport = Transport.TCP,
     messageTransformer = jsonTransformer,
     options = {},
