@@ -5,7 +5,7 @@ import { requestValidator$, t } from '@marblejs/middleware-io';
 import { readFile } from '@marblejs/core/dist/+internal';
 import { map, mergeMap } from 'rxjs/operators';
 
-const STATIC_PATH = path.resolve(__dirname, '../../../../assets');
+const STATIC_PATH = path.resolve(__dirname, '../../../../../assets');
 
 const getFileValidator$ = requestValidator$({
   params: t.type({ dir: t.string })
