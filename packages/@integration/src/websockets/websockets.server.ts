@@ -7,7 +7,7 @@ import {
 } from '@marblejs/websockets';
 import { iif, throwError, of } from 'rxjs';
 import { tap, mergeMap, buffer, map } from 'rxjs/operators';
-import { matchEvent, use } from '@marblejs/core';
+import { matchEvent, use, HttpStatus } from '@marblejs/core';
 import { eventValidator$, t } from '../../../middleware-io/dist';
 
 const sum$: WsEffect = event$ =>
@@ -33,7 +33,7 @@ const connection$: WsConnectionEffect = req$ =>
   req$.pipe(
     mergeMap(req => iif(
       () => req.headers.upgrade !== 'websocket',
-      throwError(new WebSocketConnectionError('Unauthorized', 4000)),
+      throwError(new WebSocketConnectionError('Unauthorized', HttpStatus.UNAUTHORIZED)),
       of(req),
     )),
   );

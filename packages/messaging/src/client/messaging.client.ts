@@ -1,4 +1,4 @@
-import { reader, HttpServerEventStreamToken, matchEvent, ServerEvent } from '@marblejs/core';
+import { reader, serverEvent$, matchEvent, ServerEvent } from '@marblejs/core';
 import { from, Observable, EMPTY } from 'rxjs';
 import { mergeMap, take, map, mapTo, mergeMapTo } from 'rxjs/operators';
 import {
@@ -71,7 +71,7 @@ export const messagingClient = (config: MessagingClientConfig = {}) => {
       .then(server => server.connect())
       .then(server => server.consumeResponse().then(() => server));
 
-    ask(HttpServerEventStreamToken).map(serverEvent$ =>
+    ask(serverEvent$).map(serverEvent$ =>
       serverEvent$.pipe(
         matchEvent(ServerEvent.close),
         take(1),
