@@ -1,18 +1,25 @@
 {
-  "name": "@marblejs/middleware-jwt",
+  "name": "@marblejs/middleware-multipart",
   "version": "2.3.1",
-  "description": "JWT middleware for Marble.js",
-  "main": "./dist/index.js",
+  "description": "A multipart/form-data middleware for Marble.js",
+  "main": "dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "start": "yarn watch",
     "watch": "tsc -w",
     "build": "tsc",
-    "clean": "rimraf dist",
-    "test": "jest --config ../../jest.config.js"
+    "test": "jest --config ../../jest.config.js",
+    "clean": "rimraf dist"
   },
   "files": [
     "dist/"
+  ],
+  "keywords": [
+    "marble.js",
+    "multipart",
+    "middleware",
+    "http",
+    "rxjs"
   ],
   "repository": {
     "type": "git",
@@ -29,17 +36,16 @@
     "url": "https://github.com/marblejs/marble/issues"
   },
   "homepage": "https://github.com/marblejs/marble#readme",
+  "dependencies": {
+    "@types/busboy": "^0.2.3",
+    "busboy": "~0.3.1"
+  },
   "peerDependencies": {
     "@marblejs/core": "^2.1.0",
     "rxjs": "^6.3.3"
   },
-  "dependencies": {
-    "@types/jsonwebtoken": "^7.2.8",
-    "jsonwebtoken": "^8.3.0"
-  },
   "devDependencies": {
-    "@marblejs/core": "^2.3.1",
-    "@marblejs/middleware-body": "^2.3.1"
+    "@marblejs/core": "^2.3.1"
   },
   "publishConfig": {
     "access": "public"
